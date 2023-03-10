@@ -3,6 +3,7 @@ const cheerio = require('cheerio');
 const axios = require('axios');
 const express = require('express');
 const res = require('express/lib/response');
+const fs = require('fs');
 
 const app = express()
 
@@ -74,12 +75,22 @@ app.get('/players', (req, res) => {
             }
         });
 
-        console.log(data);
-        res.json(data)
+        fs.writeFile('data.json', JSON.stringify(data), err => {
+            if (err) {
+              console.error(err);
+              return res.status(500).json({ error: 'Error al escribir el archivo' });
+            }
+    
+            console.log('Archivo creado exitosamente');
+            res.json(data);
+          });
     })
     .catch(error => {
         console.log(error);
+        res.status(500).json({ error: 'Error al obtener los datos' });
+
     });
+
 })
 
 
