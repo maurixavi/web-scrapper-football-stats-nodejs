@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-web-scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.4",
+    "cheerio": "^1.0.0-rc.12",
+    "diacritic": "0.0.2",
+    "express": "^4.18.2"
+  }
+}
