@@ -6,7 +6,8 @@ const res = require('express/lib/response');
 
 const app = express()
 
-
+const cors = require('cors');
+app.use(cors())
 
 const url = 'https://fbref.com/es/equipos/e2d73ee6/2023/all_comps/Estadisticas-de-Penarol-Todas-las-competencias'
 
@@ -29,7 +30,7 @@ app.get('/players', (req, res) => {
         const position = $(row).find('td[data-stat="position"]').text().trim();
         //const age = $(row).find('td[data-stat="age"]').text().trim();
         const matches = $(row).find('td[data-stat="games"]').text().trim();
-        const games_starts = $(row).find('td[data-stat="games_starts"]').text().trim();
+        const matches_starts = $(row).find('td[data-stat="games_starts"]').text().trim();
         const minutes = $(row).find('td[data-stat="minutes"]').text().trim();
         const minutes_90s = $(row).find('td[data-stat="minutes_90s"]').text().trim();
         const goals = $(row).find('td[data-stat="goals"]').text().trim();
@@ -53,8 +54,8 @@ app.get('/players', (req, res) => {
                 player,
                 nationality,
                 position,
-                games,
-                games_starts,
+                matches,
+                matches_starts,
                 minutes,
                 minutes_90s,
                 goals,
