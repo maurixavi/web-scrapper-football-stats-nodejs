@@ -19,7 +19,12 @@ app.get('/', function(req, res){
     res.json('This is my webscraper')
 })
 
-app.get('/players', (req, res) => {
+app.get('/players/:team/:year', (req, res) => {
+    const year = req.params.year;
+    const team = req.params.team;
+    //const url = `https://fbref.com/es/equipos/e2d73ee6/${year}/all_comps/Estadisticas-de-Penarol-Todas-las-competencias`;
+    const url = `https://fbref.com/es/equipos/e2d73ee6/${year}/all_comps/Estadisticas-de-${team}-Todas-las-competencias`;
+    
     axios.get(url)
         .then(response => {
         const $ = cheerio.load(response.data);
@@ -75,7 +80,7 @@ app.get('/players', (req, res) => {
             }
         });
 
-        fs.writeFile('data.json', JSON.stringify(data), err => {
+        fs.writeFile(`data/data_${team}_${year}.json`, JSON.stringify(data), err => {
             if (err) {
               console.error(err);
               return res.status(500).json({ error: 'Error al escribir el archivo' });
