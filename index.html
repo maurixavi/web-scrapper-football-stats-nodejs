@@ -8,8 +8,47 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="feed"></div>
+    
+    <label for="team">Team:</label>
+<select id="team">
+  <option value="Penarol">Peñarol</option>
+  <option value="Nacional">Nacional</option>
+  <option value="Boston-River">Boston River</option>
+  <option value="Cerro">Cerro</option>
+  <option value="Cerro-Largo">Cerro Largo</option>
+  <option value="Danubio">Danubio</option>
+  <option value="Defensor-Sporting">Defensor Sporting</option>
+  <option value="Maldonado">Deportivo Maldonado</option>
+  <option value="Fenix">Fenix</option>
+  <option value="La-Luz-FC">La Luz</option>
+  <option value="Liverpool">Liverpool</option>
+  <option value="Torque">Montevideo City Torque</option>
+  <option value="Plaza-Colonia">Plaza Colonia</option>
+  <option value="Racing">Racing</option>
+  <option value="River-Plate">River Plate</option>
+  <option value="Montevideo-Wanderers">Wanderers</option>
+</select>
+
+<label for="year">Season:</label>
+<select id="year">
+    <option value="2023">2023</option>
+    <option value="2022">2022</option>
+    <option value="2021">2021</option>
+    <option value="2020">2020</option>
+    <option value="2019">2019</option>
+    <option value="2018">2018</option>
+    <option value="2017">2017</option>
+</select>
+
+    <button id="search">Search</button>
+
+    <div id="results"></div>
+
+<div id="feed"></div>
+
+ 
     
     <script src="app.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ const app = express()
 const cors = require('cors');
 app.use(cors())
 
-const url = 'https://fbref.com/es/equipos/e2d73ee6/2023/all_comps/Estadisticas-de-Penarol-Todas-las-competencias'
+//const url = 'https://fbref.com/es/equipos/e2d73ee6/2023/all_comps/Estadisticas-de-Penarol-Todas-las-competencias'
 
 
 //app.METHOD(PATH, HANDLER)
@@ -23,8 +23,29 @@ app.get('/players/:team/:year', (req, res) => {
     const year = req.params.year;
     const team = req.params.team;
     //const url = `https://fbref.com/es/equipos/e2d73ee6/${year}/all_comps/Estadisticas-de-Penarol-Todas-las-competencias`;
-    const url = `https://fbref.com/es/equipos/e2d73ee6/${year}/all_comps/Estadisticas-de-${team}-Todas-las-competencias`;
-    
+
+    const teams = {
+        "Penarol": "e2d73ee6",
+        "Nacional": "26ebba72",
+        "Danubio": "84985282",
+        "Defensor-Sporting": "563b8846",
+        "Montevideo-Wanderers": "81476932",
+        "Plaza-Colonia": "e615d0fe",
+        "Cerro-Largo": "7bc956f9",
+        "Racing": "8d694a3d",
+        "Fenix": "3a3a612e",
+        "Torque": "03d0f9c5",
+        "Cerro": "ee73b6b7",
+        "Liverpool": "e87167c6",
+        "Maldonado": "78455fe4",
+        "River-Plate": "9ae9b58c",
+        "La-Luz-FC": "d7fb2120",
+        "Boston-River": "d10036ca",
+    };
+      
+    const idUrl = teams[team];
+    const url = `https://fbref.com/es/equipos/${idUrl}/${year}/all_comps/Estadisticas-de-${team}-Todas-las-competencias`;
+
     axios.get(url)
         .then(response => {
         const $ = cheerio.load(response.data);
@@ -41,10 +62,10 @@ app.get('/players/:team/:year', (req, res) => {
         const minutes_90s = $(row).find('td[data-stat="minutes_90s"]').text().trim();
         const goals = $(row).find('td[data-stat="goals"]').text().trim();
         const assists = $(row).find('td[data-stat="assists"]').text().trim();
-        const goal_assists = $(row).find('td[data-stat="goal_assists"]').text().trim();
+        const goal_assists = parseInt(goals) + parseInt(assists);
         const goals_pens = $(row).find('td[data-stat="goals_pens"]').text().trim();
         const pens_made = $(row).find('td[data-stat="pens_made"]').text().trim();
-        const pens_att = $(row).find('td[data-stat="pens_att"]').text().trim();
+        const pens_attempted = $(row).find('td[data-stat="pens_att"]').text().trim();
         const card_yellow = $(row).find('td[data-stat="card_yellow"]').text().trim();
         const cards_red = $(row).find('td[data-stat="cards_red"]').text().trim();
         const assists_per90 = $(row).find('td[data-stat="assists_per90"]').text().trim();
@@ -64,12 +85,12 @@ app.get('/players/:team/:year', (req, res) => {
                 matches_starts,
                 minutes,
                 minutes_90s,
-                goals,
-                assists,
-                goal_assists,
+                goals: goals !== "" ? parseInt(goals) : 0,
+                assists: assists !== "" ? parseInt(assists) : 0,
+                goal_assists: parseInt(goals) + parseInt(assists),
                 goals_pens,
                 pens_made,
-                pens_att,
+                pens_attempted,
                 card_yellow,
                 cards_red,
                 assists_per90,
@@ -97,6 +118,7 @@ app.get('/players/:team/:year', (req, res) => {
     });
 
 })
+
 
 
 //normalization player names

@@ -1,13 +1,42 @@
 const feedDisplay = document.querySelector('#feed')
+    const teamSelect = document.getElementById('team');
+    const yearSelect = document.getElementById('year');
+    const searchButton = document.getElementById('search');
+    const resultsContainer = document.getElementById('results');
 
-const url = 'http://localhost:8000/players'
+    searchButton.addEventListener('click', () => {
+        const team = teamSelect.value;
+        const year = yearSelect.value;
+        const url = `http://localhost:8000/players/${team}/${year}`;
+      
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            let tableHtml = `<table>
+                      <thead>
+                        <tr>
+                          <th>Player</th>
+                          <th>Matches</th>
+                          <th>Goals</th>
+                          <th>Assists</th>
 
-fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(item => {
-            const player = `<h3>` + item.player + `</h3>`
-            feedDisplay.insertAdjacentHTML("beforeend", player);
-        });
-    })
-    .catch(err => console.log(err));
+                        </tr>
+                      </thead>
+                      <tbody>`;
+    data.forEach(item => {
+      const player = `<tr>
+                        <td>${item.player}</td>
+                        <td>${item.matches}</td>
+                        <td>${item.goals}</td>
+                        <td>${item.assists}</td>
+
+                      </tr>`;
+      tableHtml += player;
+    });
+    tableHtml += '</tbody></table>';
+    feedDisplay.innerHTML = '';
+    feedDisplay.insertAdjacentHTML('afterbegin', tableHtml);
+          })
+          .catch(err => console.log(err));
+      });
+    
