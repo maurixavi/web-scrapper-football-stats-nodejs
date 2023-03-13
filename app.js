@@ -10,7 +10,7 @@ let data = [];
 searchButton.addEventListener('click', () => {
     const team = teamSelect.value;
     const year = yearSelect.value;
-    const url = `http://localhost:8000/players/${team}/${year}`;
+    const url = `http://localhost:9002/players/${team}/${year}`;
 
     fetch(url)
         .then(response => response.json())
