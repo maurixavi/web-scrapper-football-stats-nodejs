@@ -83,7 +83,7 @@ app.get('/players/:team/:year', (req, res) => {
                 position,
                 matches,
                 matches_starts,
-                minutes,
+                minutes: minutes !== "" ? parseInt(minutes) : 0,
                 minutes_90s,
                 goals: goals !== "" ? parseInt(goals) : 0,
                 assists: assists !== "" ? parseInt(assists) : 0,
@@ -91,8 +91,8 @@ app.get('/players/:team/:year', (req, res) => {
                 goals_pens,
                 pens_made,
                 pens_attempted,
-                card_yellow,
-                cards_red,
+                card_yellow: card_yellow !== "" ? parseInt(card_yellow) : 0,
+                cards_red: cards_red !== "" ? parseInt(cards_red) : 0,
                 assists_per90,
                 goals_assists_per90,
                 goals_pens_per90,
@@ -101,19 +101,19 @@ app.get('/players/:team/:year', (req, res) => {
             }
         });
 
-        fs.writeFile(`data/data_${team}_${year}.json`, JSON.stringify(data), err => {
+        fs.writeFile(`data/${team}_${year}.json`, JSON.stringify(data), err => {
             if (err) {
               console.error(err);
-              return res.status(500).json({ error: 'Error al escribir el archivo' });
+              return res.status(500).json({ error: 'Error while writing the file' });
             }
     
-            console.log('Archivo creado exitosamente');
+            console.log('File created successfully');
             res.json(data);
           });
     })
     .catch(error => {
         console.log(error);
-        res.status(500).json({ error: 'Error al obtener los datos' });
+        res.status(500).json({ error: 'Error getting data' });
 
     });
 

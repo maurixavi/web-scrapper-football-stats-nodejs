@@ -4,49 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Data: Football Stats</title>
+    <title>Football Stats</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
     <label for="team">Team:</label>
-<select id="team">
-  <option value="Penarol">Peñarol</option>
-  <option value="Nacional">Nacional</option>
-  <option value="Boston-River">Boston River</option>
-  <option value="Cerro">Cerro</option>
-  <option value="Cerro-Largo">Cerro Largo</option>
-  <option value="Danubio">Danubio</option>
-  <option value="Defensor-Sporting">Defensor Sporting</option>
-  <option value="Maldonado">Deportivo Maldonado</option>
-  <option value="Fenix">Fenix</option>
-  <option value="La-Luz-FC">La Luz</option>
-  <option value="Liverpool">Liverpool</option>
-  <option value="Torque">Montevideo City Torque</option>
-  <option value="Plaza-Colonia">Plaza Colonia</option>
-  <option value="Racing">Racing</option>
-  <option value="River-Plate">River Plate</option>
-  <option value="Montevideo-Wanderers">Wanderers</option>
-</select>
+    <select id="team">
+        <option value="Penarol">Peñarol</option>
+        <option value="Nacional">Nacional</option>
+        <option value="Boston-River">Boston River</option>
+        <option value="Cerro">Cerro</option>
+        <option value="Cerro-Largo">Cerro Largo</option>
+        <option value="Danubio">Danubio</option>
+        <option value="Defensor-Sporting">Defensor Sporting</option>
+        <option value="Maldonado">Deportivo Maldonado</option>
+        <option value="Fenix">Fenix</option>
+        <option value="La-Luz-FC">La Luz</option>
+        <option value="Liverpool">Liverpool</option>
+        <option value="Torque">Montevideo City Torque</option>
+        <option value="Plaza-Colonia">Plaza Colonia</option>
+        <option value="Racing">Racing</option>
+        <option value="River-Plate">River Plate</option>
+        <option value="Montevideo-Wanderers">Wanderers</option>
+    </select>
 
-<label for="year">Season:</label>
-<select id="year">
-    <option value="2023">2023</option>
-    <option value="2022">2022</option>
-    <option value="2021">2021</option>
-    <option value="2020">2020</option>
-    <option value="2019">2019</option>
-    <option value="2018">2018</option>
-    <option value="2017">2017</option>
-</select>
+    <label for="year">Season:</label>
+    <select id="year">
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015-2016">2015-2016</option>
+        <option value="2014-2015">2014-2015</option>
+    </select>
 
     <button id="search">Search</button>
+    <button id="download">JSON</button>
 
     <div id="results"></div>
 
-<div id="feed"></div>
-
- 
+    <div id="feed"></div>
     
     <script src="app.js"></script>
     <script src="index.js"></script>
