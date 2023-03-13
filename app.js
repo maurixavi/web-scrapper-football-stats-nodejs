@@ -10,7 +10,7 @@ let data = [];
 searchButton.addEventListener('click', () => {
     const team = teamSelect.value;
     const year = yearSelect.value;
-    const url = `https://web-scrapper-football-stats-nodejs-2r9pty5by.vercel.app/players/${team}/${year}`;
+    const url = `http://localhost:9002/players/${team}/${year}`;
 
     fetch(url)
         .then(response => response.json())
