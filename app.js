@@ -3,7 +3,7 @@ const teamSelect = document.getElementById('team');
 const yearSelect = document.getElementById('year');
 const searchButton = document.getElementById('search');
 const downloadButton = document.getElementById('download');
-const resultsContainer = document.getElementById('results');
+//const resultsContainer = document.getElementById('results');
 
 let data = [];
 
@@ -14,8 +14,8 @@ searchButton.addEventListener('click', () => {
 
     fetch(url)
         .then(response => response.json())
-        .then(jsonData => {
-            data = jsonData;
+        .then(data => {
+            //data = jsonData;
             let tableHtml = `<table>
                       <thead>
                         <tr>
@@ -43,7 +43,7 @@ searchButton.addEventListener('click', () => {
                 tableHtml += player;
             });
             tableHtml += '</tbody></table>';
-            feedDisplay.innerHTML = '';
+            //feedDisplay.innerHTML = '';
             feedDisplay.insertAdjacentHTML('afterbegin', tableHtml);
         })
         .catch(err => console.log(err));

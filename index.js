@@ -58,7 +58,8 @@ app.get('/players/:team/:year', (req, res) => {
         //const age = $(row).find('td[data-stat="age"]').text().trim();
         const matches = $(row).find('td[data-stat="games"]').text().trim();
         const matches_starts = $(row).find('td[data-stat="games_starts"]').text().trim();
-        const minutes = $(row).find('td[data-stat="minutes"]').text().trim();
+        //const minutes = $(row).find('td[data-stat="minutes"]').text().trim();
+        const minutes = $(row).find('td[data-stat="minutes"]').text().trim().replace(/,/g, '');
         const minutes_90s = $(row).find('td[data-stat="minutes_90s"]').text().trim();
         const goals = $(row).find('td[data-stat="goals"]').text().trim();
         const assists = $(row).find('td[data-stat="assists"]').text().trim();
