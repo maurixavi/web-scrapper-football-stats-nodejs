@@ -3,22 +3,21 @@ const teamSelect = document.getElementById('team');
 const yearSelect = document.getElementById('year');
 const searchButton = document.getElementById('search');
 const downloadButton = document.getElementById('download');
-//const resultsContainer = document.getElementById('results');
 
 let data = [];
+let jsonData;
 
 searchButton.addEventListener('click', () => {
     const team = teamSelect.value;
     const year = yearSelect.value;
-    //http://localhost:9002/players/${team}/${year}`;
-    //https://football-stats-express-api-rq26.vercel.app/
 
     const url =`https://football-stats-express-api-rq26.vercel.app/players/${team}/${year}`;
 
     return fetch(url)
         .then(response => response.json())
         .then(data => {
-            //data = jsonData;
+            jsonData = data;
+            console.log("data1", data)
             let tableHtml = `<table>
                       <thead>
                         <tr>
@@ -46,28 +45,30 @@ searchButton.addEventListener('click', () => {
                 tableHtml += player;
             });
             tableHtml += '</tbody></table>';
-            //feedDisplay.innerHTML = '';
             feedDisplay.insertAdjacentHTML('afterbegin', tableHtml);
         })
         .catch(err => console.log(err));
+        
 });
 
+
 downloadButton.addEventListener('click', () => {
-    if (data.length === 0) {
-        console.log('No hay datos para descargar');
+    console.log("data2", jsonData)
+    if (jsonData.length === 0) {
+        console.log('No data available for download.');
         return;
     }
     
     const team = teamSelect.value;
     const year = yearSelect.value;
     const filename = `${team}-${year}.json`;
-    const blob = new Blob([JSON.stringify(data)], {type: 'application/json'});
+    const blob = new Blob([JSON.stringify(jsonData)], {type: 'application/json'});
 
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(blob);
     downloadLink.download = filename;
 
-    document.body.appendChild(downloadLink); // Agregar el enlace de descarga al cuerpo del documento
+    document.body.appendChild(downloadLink); 
     downloadLink.click();
-    document.body.removeChild(downloadLink); // Eliminar el enlace de descarga después de descargar el archivo
+    document.body.removeChild(downloadLink); 
 });
