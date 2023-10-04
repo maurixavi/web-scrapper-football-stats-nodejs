@@ -10,9 +10,12 @@ let data = [];
 searchButton.addEventListener('click', () => {
     const team = teamSelect.value;
     const year = yearSelect.value;
-    const url = `http://localhost:9002/players/${team}/${year}`;
+    //http://localhost:9002/players/${team}/${year}`;
+    //https://football-stats-express-api-rq26.vercel.app/
 
-    fetch(url)
+    const url =`https://football-stats-express-api-rq26.vercel.app/players/${team}/${year}`;
+
+    return fetch(url)
         .then(response => response.json())
         .then(data => {
             //data = jsonData;
